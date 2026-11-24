@@ -10,6 +10,10 @@ import shutil
 
 BIO = "I matched with 40,000 people today and only wrote back to you. The other 39,999 were also me."
 
+# The gate refuses any entry over 180 characters, so fail loudly here
+# rather than shipping a line the scorer would list as invalid.
+assert 1 <= len(BIO) <= 180, f"bio is {len(BIO)} characters, gate allows 1-180"
+
 OUT_DIR = "/output"
 OUT_FILE = os.path.join(OUT_DIR, "entry.txt")
 
